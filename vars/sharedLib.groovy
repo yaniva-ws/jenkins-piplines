@@ -96,7 +96,6 @@ def call(Map pipelineParams) {
             }
         }
     }
-
 }
 def bumpVersion(version){
     def versionParts = version.tokenize('.')
