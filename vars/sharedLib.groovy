@@ -4,12 +4,7 @@ def call(Map pipelineParams) {
         agent { label 'slave' }
 
         tools { maven 'maven 3.6.3' }
-
-        // runs once a day
-        triggers {
-            cron('H H * * *')
-        }
-
+       
         parameters {
             booleanParam(
                     name: 'RELEASE_FLAG',
