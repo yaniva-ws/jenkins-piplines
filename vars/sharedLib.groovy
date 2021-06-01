@@ -13,27 +13,23 @@ def call(Map pipelineParams) {
             )
         }
 
-        environment {
-            PATH_2_POM = ${pipelineParams.path_to_pom}
-        }
-
         stages{
             stage ('clean and clone') {
                 steps {
                     cleanWs()
-                    git branch: ${pipelineParams.branch},
+                    git branch: pipelineParams.branch,
                             credentialsId: 'whitesource-github-user',
-                        url: ${pipelineParams.gitUrl}
+                        url: pipelineParams.gitUrl
                 }
             }
             stage('Build') {
                 steps {
-                    sh 'cd ${PATH_2_POM} && mvn clean compile'
+                    sh 'cd ${pipelineParams.path_to_pom} && mvn clean compile'
                 }
             }
             stage('Test') {
                 steps {
-                    sh 'cd ${PATH_2_POM} && mvn test'
+                    sh 'cd ${pipelineParams.path_to_pom} && mvn test'
                 }
             }
             stage('Deploy') {
@@ -76,7 +72,7 @@ def call(Map pipelineParams) {
                           """
 
                         } else {
-                            sh 'cd ${PATH_2_POM} && mvn deploy'
+                            sh 'cd ${pipelineParams.path_to_pom} && mvn deploy'
                         }
                     }
                 }
