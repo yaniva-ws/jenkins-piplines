@@ -1,7 +1,5 @@
-def call(String name = 'User') {
-		hello(${name})"
+def call(version) {
+	def bumpVersion = load "bumpVersion.groovy"
+	echo bumpVersion.call(${version})
 }
 
-def hello(name){
-	echo ${name}
-}
