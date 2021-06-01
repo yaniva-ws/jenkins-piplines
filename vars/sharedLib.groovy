@@ -19,7 +19,7 @@ pipeline {
     }
   
   environment {
-        PATH_2_POM = pipelineParams.path_to_pom
+        PATH_2_POM = './'
   }
 
     stages{
