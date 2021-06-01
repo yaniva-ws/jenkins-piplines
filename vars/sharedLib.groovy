@@ -14,16 +14,16 @@ def call(Map pipelineParams) {
         }
 
         environment {
-            PATH_2_POM = pipelineParams.path_to_pom
+            PATH_2_POM = ${pipelineParams.path_to_pom}
         }
 
         stages{
             stage ('clean and clone') {
                 steps {
                     cleanWs()
-                    git branch: pipelineParams.branch,
+                    git branch: ${pipelineParams.branch},
                             credentialsId: 'whitesource-github-user',
-                            url: pipelineParams.gitUrl
+                        url: ${pipelineParams.gitUrl}
                 }
             }
             stage('Build') {
